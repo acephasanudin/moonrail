@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .battle-container {
+    width: 400px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .character-panel {
+    margin-bottom: 20px;
+  }
+  
+  .actions button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  
+  .battle-log {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    height: 100px;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+  

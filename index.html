@@ -3,27 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Turn-Based Battle</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Turn-Based Combat Game</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="battle-container">
-    <div class="character-panel">
-      <h2>Player</h2>
-      <p>Health: <span id="player-health">100</span></p>
+  <div id="game-container">
+    <div id="player-team">
+      <div id="player1" class="player-character">
+        <h3>Player 1</h3>
+        <img src="assets/player.png" width="100px" alt="Player 1" class="character-image">
+        <div id="player1-hp">Health: 100</div>
+        <div class="health-bar" id="player1-health-bar"></div>
+      </div>
+      <div id="player2" class="player-character">
+        <h3>Player 2</h3>
+        <img src="assets/player.png" width="100px" alt="Player 1" class="character-image">
+        <div id="player2-hp">Health: 100</div>
+        <div class="health-bar" id="player2-health-bar"></div>
+      </div>
     </div>
-    <div class="character-panel">
-      <h2>Enemy</h2>
-      <p>Health: <span id="enemy-health">100</span></p>
+    
+    <div id="enemy-team">
+      <div id="enemy1" class="enemy-character">
+        <h3>Enemy 1</h3>
+        <img src="assets/enemy.png" width="100px" alt="Player 1" class="character-image">
+        <div id="enemy1-hp">Health: 100</div>
+        <div class="health-bar" id="enemy1-health-bar"></div>
+      </div>
+      <div id="enemy2" class="enemy-character">
+        <h3>Enemy 2</h3>
+        <img src="assets/enemy.png" width="100px" alt="Player 1" class="character-image">
+        <div id="enemy2-hp">Health: 100</div>
+        <div class="health-bar" id="enemy2-health-bar"></div>
+      </div>
     </div>
-    <div class="actions">
+
+    <div id="action-buttons">
       <button id="attack-btn">Attack</button>
       <button id="defend-btn">Defend</button>
+      <button id="special-btn">Special Ability</button>
     </div>
-    <div class="battle-log" id="battle-log">
-      <p>Battle begins!</p>
+
+    <div id="game-log"></div>
+    
+    <!-- Popup Modal -->
+    <div id="game-popup" class="popup hidden">
+      <div class="popup-content">
+        <h2 id="popup-title"></h2>
+        <p id="popup-message"></p>
+        <button id="popup-restart">Restart Game</button>
+      </div>
     </div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>

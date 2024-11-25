@@ -42,14 +42,28 @@ function setUpPlayerTurn() {
 
 // Attack button handler
 function attackHandler() {
+  // Ensure the current enemy exists
+  if (!enemyTeam[currentEnemy]) {
+    // Find the next available enemy
+    currentEnemy = enemyTeam.findIndex(enemy => enemy !== undefined);
+
+    // If no enemies exist, end the game
+    if (currentEnemy === -1) {
+      logMessage('All enemies defeated! You win!');
+      endGame();
+      return;
+    }
+  }
+
   const target = enemyTeam[currentEnemy];
   const damage = Math.floor(Math.random() * 15) + 5; // Random damage between 5-20
   const finalDamage = target.defending ? Math.floor(damage / 2) : damage;
 
   target.health -= finalDamage;
-  if(target.health < finalDamage) target.health = 0;
-  console.log("target health : "+ target.health);
-  console.log("Final damage : "+ finalDamage)
+  if (target.health < 0) target.health = 0;
+
+  console.log("Target health: " + target.health);
+  console.log("Final damage: " + finalDamage);
   
   playerHitCount[currentPlayer]++; // Increment hit counter for the player
 
@@ -244,10 +258,11 @@ function applyHitAnimation(characterId) {
 
 // Get a random action for the enemy
 function getRandomAIAction() {
-  if(currentPlayer > playerTeam.length) currentPlayer = playerTeam.length;
-  if(currentEnemy > enemyTeam.length) currentEnemy = enemyTeam.length;
-  const playerHealth = playerTeam[currentPlayer].health;
-  const enemyHealth = enemyTeam[currentEnemy].health;
+  if (!playerTeam[currentPlayer] || !enemyTeam[currentEnemy]) {
+    return 'defend'; // Default to 'defend' or another safe action if no target exists
+  }
+  const playerHealth = playerTeam[currentPlayer]?.health || 0;
+  const enemyHealth = enemyTeam[currentEnemy]?.health || 0;
 
   if (enemyHealth < 30) {
     return 'special'; // Enemy heals when low on health
